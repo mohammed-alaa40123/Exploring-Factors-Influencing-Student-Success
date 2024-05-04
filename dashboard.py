@@ -4,8 +4,8 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
+from gradient import gradient
+from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, accuracy_score
 st.set_page_config(layout="wide")
@@ -68,6 +68,11 @@ def eda():
     st.header('Exploratory Data Analysis')
     st.subheader("Feature Distributions")
     st.image('Features_Distributions.png')
+    fig5 = px.box(df, x='Dalc', y='G3', title='Grades (G3) vs Weekday Alcohol Consumption (Dalc)',
+              labels={'Dalc': 'Weekday Alcohol Consumption', 'G3': 'Final Grade'})
+    # st.pyplot()
+    
+    st.plotly_chart(fig5)
 
 
 
@@ -75,32 +80,28 @@ def eda():
 def hypothesis_analysis():
     st.header('Hypothesis Results and Analysis')
     st.write('Placeholder for hypothesis results and analysis')
-
+    # st.dataframe(pd.DataFrame())
 # Function for regression modeling
 def regression_modeling():
-    st.header('Regression Modeling')
+    # st.header('Regression Modeling')
 
-    # Load Boston housing data
-    X, y = df.drop("G3",axis=1),df["G3"]
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # # Load Boston housing data
+    # X, y = df[["avg_Grade","age"]],df["G3"]
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # best_alpha = st.slider(label="alpha",min_value=0.0,max_value=10.0,step=0.01)
+    # # Fit linear regression model
+    # lr = Ridge(alpha=best_alpha)
+    # lr.fit(X_train, y_train)
+    # lr_pred = lr.predict(X_test)
+    # lr_mse = mean_squared_error(y_test, lr_pred)
 
-    # Fit linear regression model
-    lr = LinearRegression()
-    lr.fit(X_train, y_train)
-    lr_pred = lr.predict(X_test)
-    lr_mse = mean_squared_error(y_test, lr_pred)
+    # # Fit random forest regression model
+    
 
-    # Fit random forest regression model
-    rf = RandomForestRegressor(n_estimators=100, random_state=42)
-    rf.fit(X_train, y_train)
-    rf_pred = rf.predict(X_test)
-    rf_mse = mean_squared_error(y_test, rf_pred)
-
-    st.subheader('Linear Regression')
-    st.write(f'Mean Squared Error: {lr_mse}')
-
-    st.subheader('Random Forest Regression')
-    st.write(f'Mean Squared Error: {rf_mse}')
+    # st.subheader('Linear Regression')
+    # st.write(f'Mean Squared Error: {lr_mse}')
+    gradient()
+    
 
 # Function for classification
 def classification():

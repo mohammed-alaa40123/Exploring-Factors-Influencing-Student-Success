@@ -8,6 +8,9 @@ from gradient import gradient
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, accuracy_score
+import EDACopy as eda_functions
+import altair as alt
+
 st.set_page_config(layout="wide")
 
 # Load sample datasets
@@ -68,11 +71,41 @@ def eda():
     st.header('Exploratory Data Analysis')
     st.subheader("Feature Distributions")
     st.image('Features_Distributions.png')
-    fig5 = px.box(df, x='Dalc', y='G3', title='Grades (G3) vs Weekday Alcohol Consumption (Dalc)',
-              labels={'Dalc': 'Weekday Alcohol Consumption', 'G3': 'Final Grade'})
-    # st.pyplot()
-    
+    st.subheader("Target ralationship with other features")
+    st.image('Pairplot3.png')
+    st.image('Pairplot6.png')
+    st.image('Pairplot9.png')
+    st.image('Pairplot12.png')
+    st.image('Pairplot15.png')
+    st.image('Pairplot18.png')
+    st.image('Pairplot21.png')
+    st.image('Pairplot24.png')
+    st.image('Pairplot27.png')
+    st.image('Pairplot30.png')
+    st.subheader("There exists outliers in absences, failures, farmel, Dalc, travelyime, studytime, avg_grade and age")
+    st.image('Boxplot.png')
+    st.subheader("After Removing the Outliers")
+    st.image('Boxplot_after.png')
+    fig1 = eda_functions.sex_dist()
+    st.plotly_chart(fig1)
+    fig2 = eda_functions.grades_dist()
+    st.plotly_chart(fig2)
+    fig3 = eda_functions.AvgGradeBySchool()
+    st.plotly_chart(fig3)
+    fig4 = eda_functions.WeeklyAlcohol()
+    st.plotly_chart(fig4)
+    st.image('AvgFinal_Grade_Gender_School.png')
+    fig5 = eda_functions.FinalGrades_AddressType_Desire()
     st.plotly_chart(fig5)
+    fig6 = eda_functions.FinalGrades_Internet_Romantic()
+    st.plotly_chart(fig6)
+
+    
+
+
+
+
+    
 
 
 

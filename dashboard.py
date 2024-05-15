@@ -96,6 +96,7 @@ def eda():
     st.caption("The pie chart illustrates the distribution of students by gender in the dataset. It shows that 59.4% of the students are female and 40.6% are male.")
     fig2 = eda_functions.grades_dist()
     st.plotly_chart(fig2)
+    st.caption("The pie chart illustrates the distribution of grades for students who go out. The largest segment represents average grades 33.1%, followed by high grades 23.7%. Additionally, there are moderate 22.4%, very high 6.24%, and low 14.6% grade categories. Overall, it suggests that most students who go out fall within the average to high grade range.")
     fig3 = eda_functions.AvgGradeBySchool()
     st.divider()
     st.plotly_chart(fig3)

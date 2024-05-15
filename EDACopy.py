@@ -202,8 +202,8 @@ class_distribution = df_vis['sex_label'].value_counts()
 
 def sex_dist():
     # Create a pie chart using Plotly Express
-    fig = px.pie(names=class_distribution.index, values=class_distribution.values,
-                title='Distribution of sex Class')
+    fig = px.pie(names=class_distribution.index, values=class_distribution.values
+                )
     return fig
 
 # Display the pie chart

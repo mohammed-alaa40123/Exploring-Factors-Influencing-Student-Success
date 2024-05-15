@@ -9,7 +9,6 @@ from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, accuracy_score
 import EDACopy as eda_functions
-import altair as alt
 
 st.set_page_config(layout="wide")
 
@@ -69,28 +68,36 @@ P. Cortez and A. Silva. Using Data Mining to Predict Secondary School Student Pe
 # Function for exploratory data analysis
 def eda():
     st.header('Exploratory Data Analysis')
+    st.write("After importing the data, we preformed a computation to get Average Grades from Column G1 and G2 before droping them then getting the feature distribution.")
     st.subheader("Feature Distributions")
     st.image('Features_Distributions.png')
-    st.subheader("Target ralationship with other features")
-    st.image('Pairplot3.png')
-    st.image('Pairplot6.png')
-    st.image('Pairplot9.png')
-    st.image('Pairplot12.png')
-    st.image('Pairplot15.png')
-    st.image('Pairplot18.png')
-    st.image('Pairplot21.png')
-    st.image('Pairplot24.png')
-    st.image('Pairplot27.png')
-    st.image('Pairplot30.png')
-    st.subheader("There exists outliers in absences, failures, farmel, Dalc, travelyime, studytime, avg_grade and age")
-    st.image('Boxplot.png')
-    st.subheader("After Removing the Outliers")
-    st.image('Boxplot_after.png')
+    st.write("The histograms reveal that the majority of students are between 15 and 18 years old, typically spend 2 hours or less on study time, and have few absences and no academic failures. Parental education levels are relatively even, with a slight preference for mid-level education. Most students have short travel times and rate their family relationships and health positively. While workday alcohol consumption is low, weekend consumption is moderate for most. Free time and social activities are fairly balanced, with a slight inclination towards higher levels of going out. Grades follow a normal distribution, with most students achieving middle-range grades. This suggests typical student behavior and performance, with balanced lifestyles and moderate academic achievement.")
+    # st.subheader("Target ralationship with other features")
+    # st.image('Pairplot3.png')
+    # st.image('Pairplot6.png')
+    # st.image('Pairplot9.png')
+    # st.image('Pairplot12.png')
+    # st.image('Pairplot15.png')
+    # st.image('Pairplot18.png')
+    # st.image('Pairplot21.png')
+    # st.image('Pairplot24.png')
+    # st.image('Pairplot27.png')
+    # st.image('Pairplot30.png')
+    st.divider()
+    st.subheader("Outliers")
+    st.write("After seeing the feature distibution we checked for outliers like absences, failures, farmel, Dalc, travelyime, studytime, avg_grade and age which we then removed.")
+    # st.image('Boxplot.png')
+    # st.subheader("After Removing the Outliers")
+    # st.image('Boxplot_after.png')
+    st.divider()
+    st.subheader("Distributions")
     fig1 = eda_functions.sex_dist()
     st.plotly_chart(fig1)
+    st.caption("The pie chart illustrates the distribution of students by gender in the dataset. It shows that 59.4% of the students are female and 40.6% are male.")
     fig2 = eda_functions.grades_dist()
     st.plotly_chart(fig2)
     fig3 = eda_functions.AvgGradeBySchool()
+    st.divider()
     st.plotly_chart(fig3)
     fig4 = eda_functions.WeeklyAlcohol()
     st.plotly_chart(fig4)
@@ -99,8 +106,12 @@ def eda():
     st.plotly_chart(fig5)
     fig6 = eda_functions.FinalGrades_Internet_Romantic()
     st.plotly_chart(fig6)
+    st.subheader("Internet Access and Grades:")
+    st.write("Students with internet access tend to exhibit a broader spectrum of grades, spanning both higher and lower scores, in comparison to their counterparts without internet access. Interestingly, irrespective of their romantic status, students lacking internet access demonstrate relatively consistent grade distributions.")
+    st.write("However, a notable observation emerges among students with internet access: there is a discernible increase in grade variability. This suggests that internet access may play a pivotal role in influencing the diversity of academic performance.")
+    st.subheader("Romantic Relationship and Grades:")
+    st.write("Being in a romantic relationship does not significantly affect the grade distribution. There is no clear pattern indicating that romantic status impacts final grades.")
 
-    
 
 
 

@@ -86,6 +86,17 @@ def eda():
     st.divider()
     st.subheader("Outliers")
     st.write("After seeing the feature distibution we checked for outliers like absences, failures, farmel, Dalc, travelyime, studytime, avg_grade and age which we then removed.")
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        st.subheader("Before Outliers Removal")
+        st.image("StudytimeBefore.png")
+        st.image("TraveltimeBefore.png")
+        st.image("FreetimeBefore.png")
+    with col2:
+        st.subheader("After Outliers Removal")
+        st.image("StudytimeAfter.png")
+        st.image("TraveltimeAfter.png")
+        st.image("FreetimeAfter.png")
     # st.image('Boxplot.png')
     # st.subheader("After Removing the Outliers")
     # st.image('Boxplot_after.png')

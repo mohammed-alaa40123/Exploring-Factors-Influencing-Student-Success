@@ -5,12 +5,14 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 from gradient import gradient
+from sklearn.neighbors import KNeighborsRegressor
+
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, accuracy_score
 import EDACopy as eda_functions
 from hypothesis import *
-
+from regression import *
 
 st.set_page_config(layout="wide")
 
@@ -131,24 +133,22 @@ def hypothesis_analysis():
     st.pyplot(fig)
 # Function for regression modeling
 def regression_modeling():
-    # st.header('Regression Modeling')
-
-    # # Load Boston housing data
-    # X, y = df[["avg_Grade","age"]],df["G3"]
-    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    # best_alpha = st.slider(label="alpha",min_value=0.0,max_value=10.0,step=0.01)
-    # # Fit linear regression model
-    # lr = Ridge(alpha=best_alpha)
-    # lr.fit(X_train, y_train)
-    # lr_pred = lr.predict(X_test)
-    # lr_mse = mean_squared_error(y_test, lr_pred)
-
-    # # Fit random forest regression model
+    from sklearn.linear_model import Ridge
+    from sklearn.linear_model import LinearRegression
+    import xgboost as xgb
+    st.title("Regression: Build your own model")
+    models = [LinearRegression(),Ridge(),xgb.XGBRegressor(),KNeighborsRegressor()]
+    st.subheader("Choose the features")
+    st.write("Hint: choose Avg_grade")
+    columns = st.multiselect("features",X.columns)
+    st.subheader("Choose Your Model")
+    model = st.selectbox("Select a model",models)
+    if isinstance(model,Ridge):
+        alpha = st.slider("Choose the alpha",min_value=0.01,max_value=1.0,step=0.01)
+        model=Ridge(alpha=alpha)
+    if model and columns:
+        run_regression(columns,model)
     
-
-    # st.subheader('Linear Regression')
-    # st.write(f'Mean Squared Error: {lr_mse}')
-    gradient()
     
 
 # Function for classification
@@ -174,6 +174,7 @@ tabs = {
     "Data Description": data_description,
     "EDA": eda,
     "Hypothesis Analysis": hypothesis_analysis,
+    "Gradient Descent for Regression":gradient,
     "Regression Modeling": regression_modeling,
     "Classification": classification
 }

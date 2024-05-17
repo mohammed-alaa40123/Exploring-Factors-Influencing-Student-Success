@@ -9,6 +9,8 @@ from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, accuracy_score
 import EDACopy as eda_functions
+from hypothesis import *
+
 
 st.set_page_config(layout="wide")
 
@@ -135,8 +137,12 @@ def eda():
 # Function for hypothesis results and analysis
 def hypothesis_analysis():
     st.header('Hypothesis Results and Analysis')
-    st.write('Placeholder for hypothesis results and analysis')
-    # st.dataframe(pd.DataFrame())
+    st.write("Null Hypothesis (H0): The mean final grade does not significantly differ between the two populations categorized by the binary feature.")
+    st.write("Alternative Hypothesis (H1): The mean final grade significantly differs between the two populations categorized by the binary feature.")  
+
+    feature = st.selectbox("feature",binary_categorical_columns)
+    fig = hypothesis_test_means(feature)
+    st.pyplot(fig)
 # Function for regression modeling
 def regression_modeling():
     # st.header('Regression Modeling')

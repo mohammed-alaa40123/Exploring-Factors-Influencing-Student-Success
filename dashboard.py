@@ -153,6 +153,13 @@ def hypothesis_analysis():
     feature = st.selectbox("feature",binary_categorical_columns)
     fig = hypothesis_test_means(feature)
     st.pyplot(fig)
+
+    st.subheader("Heatmap for binary categorical features that were found to be significant:")
+    st.image("correlation1.png")
+
+    st.subheader("Heatmap for binary categorical features that were found to be non significant:")
+    st.image("correlation2.png")
+
     
 # Function for regression modeling
 def regression_modeling():

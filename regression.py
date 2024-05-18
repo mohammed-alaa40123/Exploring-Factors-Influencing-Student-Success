@@ -2,6 +2,7 @@ from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 import scipy.stats as stats
 import shap
 import xgboost as xgb 
@@ -16,12 +17,25 @@ import streamlit as st
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
-def denormalize(y):#this is a denormalize function
-    u=np.mean(df['G3'])
-    sigma=np.std(df['G3'])
-    for i in y:
-        i=i*sigma+u
-    return y
+def calculate_shap(model, X_train, X_test):
+    # Calculate SHAP values
+    explainer = shap.TreeExplainer(model)
+    shap_values_cat_train = explainer.shap_values(X_train)
+    shap_values_cat_test = explainer.shap_values(X_test)
+    return explainer, shap_values_cat_train, shap_values_cat_test
+
+def display_shap_summary(shap_values_cat_train, X_train):
+    # Create the plot summarizing the SHAP values
+    shap.summary_plot(shap_values_cat_train, X_train, plot_type="bar", plot_size=(12,12))
+    summary_fig, _ = plt.gcf(), plt.gca()
+    plt.show()
+
+def summary(model, data, X_train, X_test):
+    # Calculate SHAP values
+    explainer, shap_values_cat_train, shap_values_cat_test = calculate_shap(model, X_train, X_test)
+
+    # Summarize and visualize SHAP values
+    st.pyplot(display_shap_summary(shap_values_cat_train, X_train))
 
 
 def significance_hypothesis_test(X,y_train,y_pred,coeff):
@@ -52,16 +66,9 @@ def significance_hypothesis_test(X,y_train,y_pred,coeff):
 df = pd.read_csv("cleaned_df.csv")
 X = df.drop(columns=["G3"])
 y = df['G3']
-
-def is_categorical(df, column):
-    return True if  df[column].dtype.name == 'object'else False
-        
+ 
     
 def run_regression(columns,model):
-    cat = False # checkif thereis any categorical variables
-    for c in columns:
-        if is_categorical(df,c):
-            cat = True
     X = df[columns]
     y = df['G3']
 
@@ -100,6 +107,8 @@ def run_regression(columns,model):
     # Create a DataFrame with preprocessed data and column names
     X_train_preprocessed_df = pd.DataFrame(X_train_preprocessed, columns=all_columns)
     X_test_preprocessed = preprocessor.transform(X_test)
+    X_test_preprocessed_df = pd.DataFrame(X_test_preprocessed, columns=all_columns)
+
     # Apply HyperParameterTuning for KNN Regressor
     if isinstance(model,KNeighborsRegressor):
         param_grid = {
@@ -191,7 +200,8 @@ def run_regression(columns,model):
                 st.dataframe(coefficients_df,hide_index=True)   
         
     elif not isinstance(pipeline.named_steps['regressor'], KNeighborsRegressor):
-        
+        st.subheader("Feature Importance using Shap")
+        summary(model, df, X_train_preprocessed_df, X_test_preprocessed_df)
         model.fit(X_train_preprocessed_df,y_train)
         explainer = shap.Explainer(model,X_train_preprocessed_df)
         shap_values= explainer(X_train_preprocessed_df)

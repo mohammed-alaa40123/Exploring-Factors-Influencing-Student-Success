@@ -1,4 +1,4 @@
-# Student Performance Data
+# Exploring Factors Influencing Student Success in Universities
 
 This dataset includes various attributes related to students' personal, social, and academic backgrounds, collected to analyze their impact on academic performance.
 

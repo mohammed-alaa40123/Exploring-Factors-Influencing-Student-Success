@@ -41,6 +41,24 @@ This dataset includes various attributes related to students' personal, social, 
 32. **G2**: Second period grade (numeric: from 0 to 20)
 33. **G3**: Final grade (numeric: from 0 to 20, output target)
 
+## Instructions
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/mohammed-alaa40123/Exploring-Factors-Influencing-Student-Success-in-Universities.git
+    cd Exploring-Factors-Influencing-Student-Success-in-Universities
+    ```
+
+2. Install the required dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Run the Streamlit dashboard:
+    ```bash
+    streamlit run dashboard.py
+    ```
+
 ### Citation
 
 P. Cortez and A. Silva. Using Data Mining to Predict Secondary School Student Performance. In A. Brito and J. Teixeira Eds., Proceedings of 5th FUture BUsiness TEChnology Conference (FUBUTEC 2008) pp. 5-12, Porto, Portugal, April, 2008, EUROSIS, ISBN 978-9077381-39-7.

@@ -185,6 +185,7 @@ def classification():
     classification = st.selectbox("Select a classification", ["Binary Classification", "Multi-Class Classification"])
     if classification == "Binary Classification":
         st.write("Binary Classification")
+        
     elif classification == "Multi-Class Classification":
         model_many = st.selectbox("Select a model", ["Logistic Classification", "Naive Bayes Classification", "K Nearest Neighbors"])
         if model_many == "Logistic Classification":

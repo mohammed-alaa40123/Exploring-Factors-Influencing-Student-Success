@@ -88,6 +88,7 @@ def run_regression(columns,model):
             ('num', numerical_transformer, num_columns),
             ('cat', categorical_transformer, cat_columns)
         ])
+    
 
     
     
@@ -171,8 +172,24 @@ def run_regression(columns,model):
         if hypothesis_button:
             significance, p_values,_ = significance_hypothesis_test(X_train_preprocessed_df[all_columns],y_test,y_pred,coefficients)
             coefficients_df = pd.DataFrame({'Column': all_columns, 'Coefficient': coefficients,'P_value':p_values,"significant":significance})
+            
+            # Displaying the first equation
+            st.markdown(r"""
+            $$
+            \text{Z-test} = \frac{\text{value} - \text{hypothesized value}}{\text{standard error}} = \frac{\hat{a}_m - a_m}{SE_{a_m}} = \frac{\hat{a}_m}{SE_{a_m}}
+            $$
+            """)
+
+            # Displaying the second equation
+            st.markdown(r"""
+            $$
+            SE_{a_m} = \sqrt{\frac{\sum_{n=1}^{N} (y_n - \hat{y}_n)^2}{N - 2}} \Bigg/ \sqrt{\sum_{n=1}^{N} (x_{n,m} - \bar{x}_m)^2}
+            $$
+            """)
+
             with place:
                 st.dataframe(coefficients_df,hide_index=True)   
+        
     elif not isinstance(pipeline.named_steps['regressor'], KNeighborsRegressor):
         
         model.fit(X_train_preprocessed_df,y_train)

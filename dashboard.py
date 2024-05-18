@@ -97,15 +97,21 @@ def eda():
     st.caption("The pie chart illustrates the distribution of students by gender in the dataset. It shows that 59.4% of the students are female and 40.6% are male.")
     fig2 = eda_functions.grades_dist()
     st.plotly_chart(fig2)
-    st.caption("The pie chart illustrates the distribution of grades for students who go out. The largest segment represents average grades 33.1%, followed by high grades 23.7%. Additionally, there are moderate 22.4%, very high 6.24%, and low 14.6% grade categories. Overall, it suggests that most students who go out fall within the average to high grade range.")
-    fig3 = eda_functions.AvgGradeBySchool()
+    st.caption("This suggests that going out habits may not necessarily have a negative impact on academic performance, as a substantial portion of students who go out achieve average to high grades.")
     st.divider()
+    fig3 = eda_functions.AvgGradeBySchool()
     st.plotly_chart(fig3)
+    st.caption("The bar chart illustrates the average grades for students from each school. It shows that students from Gabriel Pereira (GP) have higher average grades than students from Mousinho da Silveira (MS).")
     fig4 = eda_functions.WeeklyAlcohol()
     st.plotly_chart(fig4)
+    st.caption("The box plot illustrates the distribution of final grades by weekday alcohol consumption. It shows that students with very low weekday alcohol consumption have a wider range of higher grades, while students with very high weekday alcohol consumption have a varying range of lower grades.")
+    st.divider()
     st.image('AvgFinal_Grade_Gender_School.png')
+    st.caption("The bar chart illustrates the average final grades with female students from Gabriel Pereira (GP) having the highest average final grades then both males in Gabriel Pereira (GP) and Mousinho da Silveira (MS) combined.")
     fig5 = eda_functions.FinalGrades_AddressType_Desire()
     st.plotly_chart(fig5)
+    st.caption("The box plot illustrates the distribution of final grades by address type and desire for higher education. It shows that students living in urban areas who desire higher education have higher final grades than students living in rural areas.")
+    st.divider()
     fig6 = eda_functions.FinalGrades_Internet_Romantic()
     st.plotly_chart(fig6)
     st.subheader("Internet Access and Grades:")
@@ -116,27 +122,46 @@ def eda():
 
 
 
-
-
-    
-
-
-
 # Function for hypothesis results and analysis
 def hypothesis_analysis():
     st.header('Hypothesis Results and Analysis')
+    st.write("")
+    
+    st.write("Z-Test for Difference in Means of Two Populations:")
+
+    st.latex(r"""
+    \mu = \mu_0 - \mu_1
+    """)
+
+    st.latex(r"""
+    \sigma = \sqrt{\frac{\sigma_0^2}{n_0} + \frac{\sigma_1^2}{n_1}}
+    """)
+
+
+    st.write("The test point is:")
+    st.latex(r"""
+     \bar{x} = \bar{x}_0 - \bar{x}_1
+    """)
+    st.write("Z-Score is:")
+    st.latex(r"""
+    \text{Z-score = } \frac{\bar{x} - \mu}{\sigma}
+    """)
+
     st.write("Null Hypothesis (H0): The mean final grade does not significantly differ between the two populations categorized by the binary feature.")
     st.write("Alternative Hypothesis (H1): The mean final grade significantly differs between the two populations categorized by the binary feature.")  
 
     feature = st.selectbox("feature",binary_categorical_columns)
     fig = hypothesis_test_means(feature)
     st.pyplot(fig)
+    
 # Function for regression modeling
 def regression_modeling():
     from sklearn.linear_model import Ridge
     from sklearn.linear_model import LinearRegression
     import xgboost as xgb
     st.title("Regression: Build your own model")
+
+
     models = [LinearRegression(),Ridge(),xgb.XGBRegressor(),KNeighborsRegressor()]
     st.subheader("Choose the features")
     st.write("Hint: choose Avg_grade")
@@ -148,11 +173,16 @@ def regression_modeling():
         model=Ridge(alpha=alpha)
     if model and columns:
         run_regression(columns,model)
+
     
     
 
+
 # Function for classification
 def classification():
+
+    model = st.selectbox("Select a model", ["SVM", "Random Forest", "Logistic Regression"])
+
     pass
 #     st.header('Classification')
 

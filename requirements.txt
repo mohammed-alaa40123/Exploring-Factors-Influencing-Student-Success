@@ -2,6 +2,8 @@ pandas
 numpy
 streamlit
 seaborn
+xgboost
+shap
 plotly
 scikit-learn
 nbformat>=4.2.0

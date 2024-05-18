@@ -180,10 +180,143 @@ def regression_modeling():
 
 # Function for classification
 def classification():
+    st.header('Classification')
 
-    model = st.selectbox("Select a model", ["SVM", "Random Forest", "Logistic Regression"])
+    classification = st.selectbox("Select a classification", ["Binary Classification", "Multi-Class Classification"])
+    if classification == "Binary Classification":
+        st.write("Binary Classification")
+    elif classification == "Multi-Class Classification":
+        model_many = st.selectbox("Select a model", ["Logistic Classification", "Naive Bayes Classification", "K Nearest Neighbors"])
+        if model_many == "Logistic Classification":
+            test_accuracy = 0.6881720430107527
+            train_accuracy = 0.7580645161290323
+
+            classification_report_data = {
+                "Class": ["A", "B", "C", "D", "F"],
+                "Precision": [0.88, 0.50, 0.67, 0.57, 0.74],
+                "Recall": [0.88, 0.33, 0.84, 0.25, 0.88],
+                "F1-Score": [0.88, 0.40, 0.74, 0.35, 0.81],
+                "Support": [8, 12, 31, 16, 26]
+            }
+
+            overall_stats_data = {
+                "Metric": ["Accuracy", "Macro Avg Precision", "Macro Avg Recall", "Macro Avg F1-Score", "Weighted Avg Precision", "Weighted Avg Recall", "Weighted Avg F1-Score"],
+                "Value": [0.69, 0.67, 0.64, 0.63, 0.67, 0.69, 0.66]
+            }
+
+            # Creating DataFrames
+            classification_report_df = pd.DataFrame(classification_report_data)
+            overall_stats_df = pd.DataFrame(overall_stats_data)
+
+            # Title
+            st.title("Model Performance Metrics")
+
+            # Accuracy Metrics
+            col1, col2 = st.columns(2)
+            with col1:
+                st.subheader("Accuracy")
+                st.metric(label="Test Accuracy", value=f"{test_accuracy:.2f}")
+                st.metric(label="Train Accuracy", value=f"{train_accuracy:.2f}")
+            with col2:
+                st.image("Logistic_Classification_Multi.png")
+
+            # Classification Report
+            st.subheader("Classification Report")
+            st.dataframe(classification_report_df, hide_index=True, use_container_width=True)
+
+            # Overall Statistics
+            st.subheader("Overall Statistics")
+            st.dataframe(overall_stats_df, hide_index=True, use_container_width=True)
+
+
+        elif model_many == "Naive Bayes Classification":
+            # Data for model performance
+            test_accuracy = 0.3870967741935484
+            train_accuracy = 0.41397849462365593
+
+            classification_report_data = {
+                "Class": ["A", "B", "C", "D", "F"],
+                "Precision": [0.00, 0.21, 0.57, 0.25, 0.79],
+                "Recall": [0.00, 1.00, 0.13, 0.06, 0.73],
+                "F1-Score": [0.00, 0.34, 0.21, 0.10, 0.76],
+                "Support": [8, 12, 31, 16, 26]
+            }
+
+            overall_stats_data = {
+                "Metric": ["Accuracy", "Macro Avg Precision", "Macro Avg Recall", "Macro Avg F1-Score", "Weighted Avg Precision", "Weighted Avg Recall", "Weighted Avg F1-Score"],
+                "Value": [0.39, 0.36, 0.38, 0.28, 0.48, 0.39, 0.34]
+            }
+
+            # Creating DataFrames
+            classification_report_df = pd.DataFrame(classification_report_data)
+            overall_stats_df = pd.DataFrame(overall_stats_data)
+
+            # Title
+            st.title("Model Performance Metrics")
+
+            # Accuracy Metrics
+            
+            st.subheader("Accuracy")
+            st.metric(label="Test Accuracy", value=f"{test_accuracy:.2f}")
+            st.metric(label="Train Accuracy", value=f"{train_accuracy:.2f}")
+        
+
+            # Classification Report
+            st.subheader("Classification Report")
+            st.table(classification_report_df)
+
+            # Overall Statistics
+            st.subheader("Overall Statistics")
+            st.table(overall_stats_df)
+           
+        elif model_many == "K Nearest Neighbors":
+
+            test_accuracy = 0.7204301075268817
+            train_accuracy = 0.7634408602150538
+
+            classification_report_data = {
+                "Class": ["A", "B", "C", "D", "F"],
+                "Precision": [0.88, 0.64, 0.72, 0.54, 0.79],
+                "Recall": [0.88, 0.58, 0.74, 0.44, 0.88],
+                "F1-Score": [0.88, 0.61, 0.73, 0.48, 0.84],
+                "Support": [8, 12, 31, 16, 26]
+            }
+
+            overall_stats_data = {
+                "Metric": ["Accuracy", "Macro Avg Precision", "Macro Avg Recall", "Macro Avg F1-Score", "Weighted Avg Precision", "Weighted Avg Recall", "Weighted Avg F1-Score"],
+                "Value": [0.72, 0.71, 0.70, 0.71, 0.71, 0.72, 0.71]
+            }
+
+            # Creating DataFrames
+            classification_report_df = pd.DataFrame(classification_report_data)
+            overall_stats_df = pd.DataFrame(overall_stats_data)
+
+            # Title
+            st.title("Model Performance Metrics")
+
+            # Accuracy Metrics
+            col1, col2 = st.columns(2)
+            with col1:
+                st.subheader("Accuracy")
+                st.metric(label="Test Accuracy", value=f"{test_accuracy:.2f}")
+                st.metric(label="Train Accuracy", value=f"{train_accuracy:.2f}")
+            with col2:
+                st.image("k_nearest_neighbors_Multi.png")
+
+            # Classification Report
+            st.subheader("Classification Report")
+            st.table(classification_report_df)
+
+            # Overall Statistics
+            st.subheader("Overall Statistics")
+            st.table(overall_stats_df)
+
 
     pass
+
+
+# # Function for classification
+
 #     st.header('Classification')
 
 #     # Load Iris dataset

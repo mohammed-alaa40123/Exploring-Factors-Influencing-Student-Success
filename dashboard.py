@@ -298,11 +298,11 @@ def multi_Naive_Bayes():
 
             # Classification Report
             st.subheader("Classification Report")
-            st.table(classification_report_df)
+            st.dataframe(classification_report_df,hide_index=True, use_container_width=True)
 
             # Overall Statistics
             st.subheader("Overall Statistics")
-            st.table(overall_stats_df)
+            st.dataframe(overall_stats_df,hide_index=True, use_container_width=True)
            
 
 def multi_knn():
@@ -341,11 +341,11 @@ def multi_knn():
 
             # Classification Report
             st.subheader("Classification Report")
-            st.table(classification_report_df)
+            st.dataframe(classification_report_df, hide_index=True,use_container_width=True)
 
             # Overall Statistics
             st.subheader("Overall Statistics")
-            st.table(overall_stats_df)
+            st.dataframe(overall_stats_df,hide_index=True, use_container_width=True)
 
 
 def binary_Logistic():

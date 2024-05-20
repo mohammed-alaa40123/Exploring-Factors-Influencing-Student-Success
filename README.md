@@ -45,8 +45,8 @@ This dataset includes various attributes related to students' personal, social, 
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/mohammed-alaa40123/Exploring-Factors-Influencing-Student-Success-in-Universities.git
-    cd Exploring-Factors-Influencing-Student-Success-in-Universities
+    git clone https://github.com/mohammed-alaa40123/Exploring-Factors-Influencing-Student-Success.git
+    cd Exploring-Factors-Influencing-Student-Success
     ```
 
 2. Install the required dependencies:

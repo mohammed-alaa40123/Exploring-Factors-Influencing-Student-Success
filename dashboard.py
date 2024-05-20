@@ -74,7 +74,7 @@ def eda():
     st.header('Exploratory Data Analysis')
     st.write("After importing the data, we preformed a computation to get Average Grades from Column G1 and G2 before droping them then getting the feature distribution.")
     st.subheader("Feature Distributions")
-    st.image('Features_Distributions.png')
+    st.image('images/Features_Distributions.png')
     st.write("The histograms reveal that the majority of students are between 15 and 18 years old, typically spend 2 hours or less on study time, and have few absences and no academic failures. Parental education levels are relatively even, with a slight preference for mid-level education. Most students have short travel times and rate their family relationships and health positively. While workday alcohol consumption is low, weekend consumption is moderate for most. Free time and social activities are fairly balanced, with a slight inclination towards higher levels of going out. Grades follow a normal distribution, with most students achieving middle-range grades. This suggests typical student behavior and performance, with balanced lifestyles and moderate academic achievement.")
     st.divider()
     st.subheader("Outliers")
@@ -82,14 +82,14 @@ def eda():
     col1, col2 = st.columns(2, gap="small")
     with col1:
         st.subheader("Before Outliers Removal")
-        st.image("StudytimeBefore.png")
-        st.image("TraveltimeBefore.png")
-        st.image("FreetimeBefore.png")
+        st.image("images/StudytimeBefore.png")
+        st.image("images/TraveltimeBefore.png")
+        st.image("images/FreetimeBefore.png")
     with col2:
-        st.subheader("After Outliers Removal")
-        st.image("StudytimeAfter.png")
-        st.image("TraveltimeAfter.png")
-        st.image("FreetimeAfter.png")
+        st.subheader("images/After Outliers Removal")
+        st.image("images/StudytimeAfter.png")
+        st.image("images/TraveltimeAfter.png")
+        st.image("images/FreetimeAfter.png")
     st.divider()
     st.subheader("Distributions")
     fig1 = eda_functions.sex_dist()
@@ -106,7 +106,7 @@ def eda():
     st.plotly_chart(fig4)
     st.caption("The box plot illustrates the distribution of final grades by weekday alcohol consumption. It shows that students with very low weekday alcohol consumption have a wider range of higher grades, while students with very high weekday alcohol consumption have a varying range of lower grades.")
     st.divider()
-    st.image('AvgFinal_Grade_Gender_School.png')
+    st.image('images/AvgFinal_Grade_Gender_School.png')
     st.caption("The bar chart illustrates the average final grades with female students from Gabriel Pereira (GP) having the highest average final grades then both males in Gabriel Pereira (GP) and Mousinho da Silveira (MS) combined.")
     fig5 = eda_functions.FinalGrades_AddressType_Desire()
     st.plotly_chart(fig5)
@@ -155,10 +155,10 @@ def hypothesis_analysis():
     st.pyplot(fig)
 
     st.subheader("Heatmap for binary categorical features that were found to be significant:")
-    st.image("correlation1.png")
+    st.image("images/correlation1.png")
 
     st.subheader("Heatmap for binary categorical features that were found to be non significant:")
-    st.image("correlation2.png")
+    st.image("images/correlation2.png")
 
     
 # Function for regression modeling
@@ -254,7 +254,7 @@ def multi_Logistic():
                 st.metric(label="Test Accuracy", value=f"{test_accuracy:.2f}")
                 st.metric(label="Train Accuracy", value=f"{train_accuracy:.2f}")
             with col2:
-                st.image("Logistic_Classification_Multi.png")
+                st.image("images/Logistic_Classification_Multi.png")
 
             # Classification Report
             st.subheader("Classification Report")
@@ -337,7 +337,7 @@ def multi_knn():
                 st.metric(label="Test Accuracy", value=f"{test_accuracy:.2f}")
                 st.metric(label="Train Accuracy", value=f"{train_accuracy:.2f}")
             with col2:
-                st.image("k_nearest_neighbors_Multi.png")
+                st.image("images/k_nearest_neighbors_Multi.png")
 
             # Classification Report
             st.subheader("Classification Report")
@@ -380,7 +380,7 @@ def binary_Logistic():
             st.metric(label="Test Accuracy", value=f"{test_accuracy:.2f}")
             st.metric(label="Train Accuracy", value=f"{train_accuracy:.2f}")
         with col2:
-            st.image("Logistic_Classification_Binary.png")
+            st.image("images/Logistic_Classification_Binary.png")
 
         # Classification Report
         st.subheader("Classification Report")
@@ -462,7 +462,7 @@ def binary_knn():
             st.metric(label="Test Accuracy", value=f"{best_test_accuracy:.2f}")
             st.metric(label="Train Accuracy", value=f"{best_train_accuracy:.2f}")
         with col2:
-            st.image("k_nearest_neighbors_Binary.png")
+            st.image("images/k_nearest_neighbors_Binary.png")
         # Classification Report
         st.subheader("Classification Report")
         st.dataframe(classification_report_df, hide_index=True, use_container_width=True)

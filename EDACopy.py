@@ -92,7 +92,7 @@ if __name__ == "__main__":
                 fontdict={'fontsize': 20, 'fontweight': 'bold'})
         sns.histplot(df[numerical_columns[i]], bins='rice', kde=True)  # Use square root estimator
         plt.tight_layout()
-        plt.savefig('Features_Distributions.png')
+        plt.savefig('images/Features_Distributions.png')
 
 
         # Create a bar plot of average final grades
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     plt.xlabel('School')
     plt.ylabel('Average Final Grade (G3)')
     #plt.show()
-    plt.savefig('AvgFinal_Grade_Gender_School.png')
+    plt.savefig('images/AvgFinal_Grade_Gender_School.png')
 
 def FinalGrades_AddressType_Desire():
     fig2 = px.box(df, x='address', y='G3', color='higher',

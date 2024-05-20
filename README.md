@@ -1,4 +1,4 @@
-# Exploring Factors Influencing Student Success in Universities
+# Exploring Factors Influencing Student Success in Schools
 
 This dataset includes various attributes related to students' personal, social, and academic backgrounds, collected to analyze their impact on academic performance.
 
@@ -37,9 +37,9 @@ This dataset includes various attributes related to students' personal, social, 
 
 ### Target Variable
 
-31. **G1**: First period grade (numeric: from 0 to 20)
-32. **G2**: Second period grade (numeric: from 0 to 20)
-33. **G3**: Final grade (numeric: from 0 to 20, output target)
+31. **G1**: First year grade (numeric: from 0 to 20)
+32. **G2**: Second year grade (numeric: from 0 to 20)
+33. **G3**: Final year (numeric: from 0 to 20, output target)
 
 ## Instructions
 

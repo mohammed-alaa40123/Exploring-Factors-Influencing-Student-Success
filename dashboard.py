@@ -86,7 +86,7 @@ def eda():
         st.image("images/TraveltimeBefore.png")
         st.image("images/FreetimeBefore.png")
     with col2:
-        st.subheader("images/After Outliers Removal")
+        st.subheader("After Outliers Removal")
         st.image("images/StudytimeAfter.png")
         st.image("images/TraveltimeAfter.png")
         st.image("images/FreetimeAfter.png")
@@ -192,8 +192,8 @@ def classification():
     classification = st.selectbox("Select a classification", ["Binary Classification", "Multi-Class Classification"])
     if classification == "Binary Classification":
         st.write("Binary Classification")
-        model_binary = st.selectbox("Select a model", ["Logistic Classification", "Naive Bayes Classification", "K Nearest Neighbors"])
-        if model_binary == "Logistic Classification":
+        model_binary = st.selectbox("Select a model", ["Logistic Regression Classification", "Naive Bayes Classification", "K Nearest Neighbors"])
+        if model_binary == "Logistic Regression Classification":
             binary_Logistic()
 
 
@@ -499,8 +499,22 @@ tabs = {
     "Classification": classification
 }
 
-# Render tabs
-st.sidebar.title('Navigation')
 
+
+# Render tabs
+# add logo
+st.sidebar.image('images/logo.png', width=100, )
+
+student_data = {
+    "Names": ["Mohamed Alaa", "Abdelrahman Safwat", "Bola Yosry", "Hamdi Awad", "Omar Walid", "Omar Rushdy"],
+    "Student ID": ["21-101142", "21-101108", "21-101147", "21-101011", "21-101031", "21-101051"]
+}
+
+# Create DataFrame
+df_student = pd.DataFrame(student_data)
+
+# Sidebar Table
+st.sidebar.dataframe(df_student, hide_index=True, use_container_width=True)
+st.sidebar.title('Navigation')
 selected_tab = st.sidebar.radio("Go to", list(tabs.keys()))
 tabs[selected_tab]()
